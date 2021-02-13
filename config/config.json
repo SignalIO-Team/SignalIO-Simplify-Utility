@@ -1,0 +1,11 @@
+{
+  "port": "YourSerialPort",
+  "port_speed": "9600",
+  "ota_ip":"YourDeviceIP",
+  "ota_password":"YourDevicePassword",
+  "ota_username": "YourDeviceUsername",
+  "firmware_path": "firmware/firmware.bin",
+  "spiffs_path": "data/spiffs.bin",
+  "flash":"4MB",
+  "start_addr":"0x10000"
+}
