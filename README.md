@@ -11,7 +11,7 @@ firmware folder stores firmware.bin (can be redefined in config file) image, dat
 
 This software require python 2.8^, esptool.py and some external libraries (requirements.txt)
 
-Also this utility uses external software:
+Also this utility using external software:
 - espota.py  
     Original espota.py by Ivan Grokhotkov: (https://gist.github.com/igrr/d35ab8446922179dc58c)
 
