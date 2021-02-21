@@ -37,7 +37,7 @@ def Serial_init():
     except Exception as e:
         print(colored("COM PORT ERROR", 'red'))
         print(colored(e,'red'))
-        sys.exit(1)
+        
 
 
 def flash_firmware():
