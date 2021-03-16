@@ -21,3 +21,5 @@ Also this utility using external software:
 - esptool developed by Espressif Systems
 - figlet utility (to disable it comment line 79 in __init__.py file)
  
+ 
+ ## Currently this utility supports only python 2.7
