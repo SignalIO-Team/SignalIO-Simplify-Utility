@@ -13,6 +13,7 @@ config = help.load_config()
 Board = "SignalIO board v1.0"
 SOC = "ESP32 WROOM 4mb Flash"
 
+os.system("clear")
 
 def on_load():
     command = PrettyTable(['Board', 'SOC'])
@@ -37,7 +38,6 @@ def Serial_init():
     except Exception as e:
         print(colored("COM PORT ERROR", 'red'))
         print(colored(e,'red'))
-        
 
 
 def flash_firmware():
@@ -75,7 +75,6 @@ def ota_spiffs():
 def init():
     try:
         port = Serial_init()
-        os.system("clear")
         os.system("figlet SIGNALIO ESPTOOL SIMPLIFIER")
         on_load()
         print(colored("System inited", "green"))
