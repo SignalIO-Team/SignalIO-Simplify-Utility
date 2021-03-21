@@ -13,13 +13,18 @@ config = helps.load_config()
 Board = "SignalIO board v1.0"
 SOC = "ESP32 WROOM 4mb Flash"
 
-operating_system = os.uname()
 
-if operating_system[0] == 'Linux':
-    os.system("clear")
+try:
+    operating_system = os.uname()
+    if operating_system[0] == 'Linux':
+        os.system("clear")
 
-else:
-    os.system('cls')
+    else:
+        os.system('cls')
+
+except Exception as e:
+    pass
+        
 
 
 def on_load():
@@ -83,8 +88,11 @@ def init():
     try:
         port = serial_init()
 
-        if operating_system[0] == 'Linux':
-            os.system("figlet SIGNALIO ESPTOOL SIMPLIFIER")
+        try:
+            if operating_system[0] == 'Linux':
+                os.system("figlet SIGNALIO ESPTOOL SIMPLIFIER")
+        except Exception as e:
+            pass
 
         on_load()
         print(colored("System inited", "green"))
