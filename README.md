@@ -19,4 +19,4 @@ Also this utility using external software:
     Modified since 2015-11-09 from Hristo Gochkov (https://github.com/me-no-dev)
     Modified since 2016-01-03 from Matthew O'Gorman (https://githumb.com/mogorman)
 - esptool developed by Espressif Systems
-- figlet utility (to disable it comment line 79 in __init__.py file)
+- figlet utility (works only for Linux OS. To disable it comment line 79 in __init__.py file)
