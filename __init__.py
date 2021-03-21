@@ -7,13 +7,20 @@ from prettytable import PrettyTable
 import logging
 
 log = logging.getLogger()
-help = helper.help()
-config = help.load_config()
+helps = helper.help()
+config = helps.load_config()
 
 Board = "SignalIO board v1.0"
 SOC = "ESP32 WROOM 4mb Flash"
 
-os.system("clear")
+operating_system = os.uname()
+
+if operating_system[0] == 'Linux':
+    os.system("clear")
+
+else:
+    os.system('cls')
+
 
 def on_load():
     command = PrettyTable(['Board', 'SOC'])
@@ -22,7 +29,7 @@ def on_load():
     print(command)
 
 
-def Serial_init():
+def serial_init():
     try:
         port = serial.Serial(
                 port=config["port"],
@@ -47,11 +54,11 @@ def flash_firmware():
 
 def serial_monitor(port):
     try:
-        print(colored("Serial debuger started!\nPress Ctrl^C to return to menu","green"))
-        while (True):
+        print(colored("Serial debuger started!\nPress Ctrl^C to return to menu", "green"))
+        while True:
             val = port.readline()
-            if(val > 0):
-                print(val).strip("\r\n")
+            if len(str(val)) > 0:
+                print(val)
     except KeyboardInterrupt:
         pass
 
@@ -62,7 +69,7 @@ def erase_flash():
 
 
 def ota():
-    password = raw_input("Enter OTA password (if password not set press enter): ")
+    password = input("Enter OTA password (if password not set press enter): ")
     print(colored("Updating Firmware", "green"))
     os.system("python3 OTA/espota.py -i " + config["ota_ip"] + " [-a " + password + "] -f "+ config["firmware_path"])
 
@@ -74,31 +81,33 @@ def ota_spiffs():
 
 def init():
     try:
-        port = Serial_init()
-        os.system("figlet SIGNALIO ESPTOOL SIMPLIFIER")
+        port = serial_init()
+
+        if operating_system[0] == 'Linux':
+            os.system("figlet SIGNALIO ESPTOOL SIMPLIFIER")
+
         on_load()
         print(colored("System inited", "green"))
-        log.info("TEST")
         print("1. OTA update\n2. OTA update SPIFFS\n3. Serial debuger\n4. Erase flash (!!!WARNING!!! This will erase both flash and SPIFFS image)\n5. Flash firmware\n6. Exit")
         while(1):
             key = input("Choose option: ")
-            if(key == 1):
+            if key == "1":
                 ota()
-            if(key == 2):
+            if key == "2":
                 ota_spiffs()
-            if(key == 3):
+            if key == "3":
                 serial_monitor(port)
-            if(key == 4):
+            if key == "4":
                 erase_flash()
-            if(key == 5):
+            if key == "5":
                 flash_firmware()
-            if(key == 6):
-                os.system("clear")
+            if key == "6":
                 port.close()
                 sys.exit("Exit")
 
     except Exception as e:
-        sys.exit(e)
+        print(colored("ERROR", 'red'))
+        print(colored(e,'red'))
 
 
 if __name__ == "__main__":
