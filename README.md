@@ -9,7 +9,7 @@ Functions:
 firmware folder stores firmware.bin (can be redefined in config file) image, data folder stores spiffs.bin (can be redefined in config file) image and config folder stores config.json file
 
 
-This software require python 2.8^, esptool.py and some external libraries (requirements.txt)
+This software require python 3.5^, esptool.py and some external libraries (requirements.txt)
 
 Also this utility using external software:
 - espota.py  
