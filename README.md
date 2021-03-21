@@ -20,6 +20,3 @@ Also this utility using external software:
     Modified since 2016-01-03 from Matthew O'Gorman (https://githumb.com/mogorman)
 - esptool developed by Espressif Systems
 - figlet utility (to disable it comment line 79 in __init__.py file)
- 
- 
- ## Currently this utility supports only python 2.7
